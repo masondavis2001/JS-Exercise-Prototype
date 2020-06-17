@@ -39,9 +39,38 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+Person.prototype.eat = function (edible) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible);
+  }
+}
+
+Person.prototype.poop = function () {
+  this.stomach = [];
+}
+
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`;
+}
+
+const personOne = new Person('Mason', 19);
+
+console.log(personOne.toString());
+
+personOne.eat('pizza');
+personOne.eat('fried airpods');
+personOne.eat('notsushi');
+
+console.log(personOne.stomach);
+
+personOne.poop();
+
+console.log(personOne.stomach);
 
 /*
   TASK 2
@@ -57,10 +86,30 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model
+  this.milesPerGallon = milesPerGallon
+  this.tank = []
+  this.odometer = []
+}
+Car.prototype.fill = function (gallons) {
+  if (this.tank.length < 10) {
+    this.tank.push(gallons);
+  }
 }
 
+const carOne = new Car('Sedan', '20MPG');
+
+Car.prototype.toString = function () {
+  return `${this.model}, ${this.milesPerGallon}`;
+}
+
+console.log(carOne.toString())
+
+carOne.fill('10 Gallons of Gas');
+
+console.log(carOne.tank);
+console.log(carOne.odometer);
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -68,18 +117,28 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype.play = function (favoriteToy) {
+  console.log(`${this.name} is ${this.age} years old and is playing with a ${this.favoriteToy}.`)
+}
+
+const babyOne = new Baby('Cornholio', 2, 'Yoyo');
+
+babyOne.play();
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Encapsulation - Enclosing or hiding something, object's methods and properties are enclosed within the object, not exposed.
+  2. Abstraction - Hiding the more advanced details and showing only the simple ones. Helps code become more understandable.
+  3. Inheritance - Allows the parent class to pass functinality to a child class, reusing code and saving space as well as looks more clean.
+  4. Polymorphism - The same method can be used on different objects.
 */
 
 
